@@ -20,7 +20,7 @@ void insertion_sort_list(listint_t **list)
 		aux2 = node->prev;
 		for (; aux2 && node->n < aux2->n;)
 		{
-			swap_nodes(&aux2, node);
+			swap_nodes(list, &aux2, node);
 			print_list(*list);
 		}
 	}
@@ -28,12 +28,13 @@ void insertion_sort_list(listint_t **list)
 
 /**
  * swap_nodes - swaps two nodes
+ * @h: pointer to the original list
  * @swap1: pointer to the first swap
  * @swap2: pointer to the secon swap
  * Return: void
  */
 
-void swap_nodes(listint_t **swap1, listint_t *swap2)
+void swap_nodes(listint_t **h, listint_t **swap1, listint_t *swap2)
 {
 	(*swap1)->next = swap2->next;
 	if (swap2->next)
@@ -43,7 +44,7 @@ void swap_nodes(listint_t **swap1, listint_t *swap2)
 	if ((*swap1)->prev)
 		(*swap1)->prev->next = swap2;
 	else
-		(*swap1) = swap2;
+		*h = swap2;
 	(*swap1)->prev = swap2;
 	(*swap1) = swap2->prev;
 }
