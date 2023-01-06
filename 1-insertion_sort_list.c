@@ -7,21 +7,18 @@
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *aux = NULL;
-	listint_t *aux2 = NULL;
-	listint_t *node = NULL;
+	listint_t *iter, *insert, *aux;
 
-	if (!*list || !(*list)->next)
-		exit(1);
-	node = *list;
-	for (node = (*list)->next; node; node = aux)
+	if (!list || !*list || !(*list)->next)
+		return;
+	for (iter = (*list)->next; iter != NULL; iter = aux)
 	{
-		aux = node->next;
-		aux2 = node->prev;
-		for (; aux2 && node->n < aux2->n;)
+		aux = iter->next;
+		insert = iter->prev;
+		while (insert != NULL && iter->n < insert->n)
 		{
-			swap_nodes(list, &aux2, node);
-			print_list(*list);
+			swap_nodes(list, &insert, iter);
+			print_list((const listint_t *)*list);
 		}
 	}
 }
