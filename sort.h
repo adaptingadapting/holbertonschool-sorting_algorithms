@@ -21,6 +21,8 @@ typedef struct listint_s
 	struct listint_s *next;
 }	listint_t;
 
+void insertion_sort(int *array, size_t size);
+void shell_sort(int *array, size_t size);
 void lo_version(int *array, int lo, int high, size_t size);
 int partition(int *array, int lo, int high, size_t size);
 void swap_int(int *a, int *b);
