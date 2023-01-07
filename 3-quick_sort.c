@@ -8,7 +8,9 @@
 
 void quick_sort(int *array, size_t size)
 {
-	lo_version(array, 0, size, size);
+	if (!array || size < 2)
+		return;
+	lo_version(array, 0, size - 1, size);
 }
 
 /**
@@ -20,14 +22,14 @@ void quick_sort(int *array, size_t size)
  * @array: array to be sorted
  * @lo: lowest in the array you want to go, after the
  * last partition this is going to be placed.
- * @hi: highest in the array you want to go, its going
+ * @high: highest in the array you want to go, its going
  * to be the last item in this case, so size
  * @size: size of the array for printintg
  */
 
 void lo_version(int *array, int lo, int high, size_t size)
 {
-	int pivot;  
+	int pivot;
 
 	if (lo < high)
 	{
@@ -52,26 +54,26 @@ void lo_version(int *array, int lo, int high, size_t size)
 
 int partition(int *array, int lo, int hi, size_t size)
 {
-	int i = (lo -1);
+	int i = (lo - 1);
 	int j;
 	int pivot = array[hi];
 
-	for (j = lo; j <= hi - 1; j++)
+	for (j = lo; j < hi; j++)
 	{
-		if (array[j] < pivot)
+		if (array[j] <= pivot)
 		{
 			i++;
-			swap_int(&array[i], &array[j]);
 			if (i != j)
 			{
-				print_array(array, size + 1);
+				swap_int(&array[i], &array[j]);
+				print_array(array, size);
 			}
 		}
 	}
-	swap_int(&array[i + 1], &array[hi]);	
-	if (i + 1 != hi)
+	if (array[hi] < array[i + 1])
 	{
-		print_array(array, size + 1);
+		swap_int(&array[i + 1], &array[hi]);
+		print_array(array, size);
 	}
 	return (i + 1);
 }
