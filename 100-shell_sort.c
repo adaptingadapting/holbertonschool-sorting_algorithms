@@ -39,8 +39,8 @@ void shell_sort(int *array, size_t size)
 
 void insertion_sort(int *array, size_t size)
 {
-	int i;
-	int j;
+	size_t i;
+	size_t j;
 
 	for (i = 0; i < size - 1; i++)
 	{
